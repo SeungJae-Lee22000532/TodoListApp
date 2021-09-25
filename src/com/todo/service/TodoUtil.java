@@ -44,15 +44,25 @@ public class TodoUtil {
 
 	public static void deleteItem(TodoList l) {
 		Scanner sc = new Scanner(System.in);
+		String isDelete = "n";
 		
 		System.out.print("[항목 삭제]\n"
 				+ "삭제할 항목의 번호를 입력하시오 > ");
 		int num = sc.nextInt();
 		
+		if (num > count || num < 1) {
+			System.out.println("없는 번호입니다!");
+			return;
+		}
+		
 		System.out.println(num + ". " + l.getItem(num - 1));
-		l.deleteItem(l.getItem(num - 1));
-		count--;
-		System.out.println("삭제되었습니다.");
+		System.out.print("위 항목을 삭제하시겠습니까? (y/n) > ");
+		isDelete = sc.next();
+		if(isDelete.equalsIgnoreCase("y")) {
+			l.deleteItem(l.getItem(num - 1));
+			count--;
+			System.out.println("삭제되었습니다.");
+		}
 	}
 
 
