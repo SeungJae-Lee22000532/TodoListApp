@@ -7,9 +7,7 @@ import com.todo.menu.Menu;
 import com.todo.service.TodoUtil;
 
 public class TodoMain {
-	
 	public static void start() {
-	
 		Scanner sc = new Scanner(System.in);
 		TodoList l = new TodoList();
 		boolean isList = false;
@@ -20,6 +18,7 @@ public class TodoMain {
 			Menu.prompt();
 			isList = false;
 			String choice = sc.next();
+			String keyword;
 			switch (choice) {
 
 			case "add":
@@ -36,6 +35,10 @@ public class TodoMain {
 				
 			case "ls":
 				TodoUtil.listAll(l);
+				break;
+				
+			case "ls_cate":
+				TodoUtil.listCate(l);
 				break;
 
 			case "ls_name_asc":
@@ -56,7 +59,24 @@ public class TodoMain {
 				System.out.println("날짜순으로 정렬하였습니다.");
 				isList = true;
 				break;
-
+				
+			case "ls_date_desc":
+				l.sortByDate();
+				l.reverseList();
+				System.out.println("날짜역순으로 정렬하였습니다.");
+				isList = true;
+				break;
+				
+			case "find":
+				keyword = sc.next().trim();
+				TodoUtil.find(l, keyword);
+				break;
+				
+			case "find_cate":
+				keyword = sc.next().trim();
+				TodoUtil.find_cate(l, keyword);
+				break;
+				
 			case "help":
 				Menu.displaymenu();
 				break;

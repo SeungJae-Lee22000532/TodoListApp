@@ -7,7 +7,7 @@ import com.todo.service.TodoSortByName;
 
 public class TodoList {
 	private List<TodoItem> list;
-
+	
 	public TodoList() {
 		this.list = new ArrayList<TodoItem>();
 	}
@@ -54,10 +54,21 @@ public class TodoList {
 	public int indexOf(TodoItem t) {
 		return list.indexOf(t);
 	}
+	
+	public TodoItem getItem(int n) {
+		return list.get(n);
+	}
 
 	public Boolean isDuplicate(String title) {
 		for (TodoItem item : list) {
 			if (title.equals(item.getTitle())) return true;
+		}
+		return false;
+	}
+	
+	public Boolean isDuplicate_cate(String category) {
+		for (TodoItem item : list) {
+			if (category.equals(item.getCategory())) return true;
 		}
 		return false;
 	}
